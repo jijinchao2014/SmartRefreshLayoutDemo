@@ -217,7 +217,8 @@ public class MyFragment extends LazyloadFragment implements OnRefreshListener {
     protected void lazyLoad() {
         Log.e(TAG, title + " ===========> lazyLoad()");
         Toast.makeText(mContext, "正在加载数据", Toast.LENGTH_SHORT).show();
-        swipeRefreshLayout.autoRefresh();
+        //设置自动加载时刷新头部拖拽距离，时间
+        swipeRefreshLayout.autoRefresh(50,200,1);
     }
 
 
