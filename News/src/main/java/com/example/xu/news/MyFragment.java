@@ -1,6 +1,7 @@
 package com.example.xu.news;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +12,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,6 +36,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -124,7 +130,7 @@ public class MyFragment extends LazyloadFragment implements OnRefreshListener {
         }
     }
 
-    private void loadMore(){
+    private void loadMore() {
         String url = URL_TOP_250 + offSet;
 
         JsonArrayRequest.getMovieData(url, new Callback() {
@@ -146,7 +152,7 @@ public class MyFragment extends LazyloadFragment implements OnRefreshListener {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        setData(false,movieList);
+                        setData(false, movieList);
                     }
                 });
             }
@@ -218,13 +224,14 @@ public class MyFragment extends LazyloadFragment implements OnRefreshListener {
         Log.e(TAG, title + " ===========> lazyLoad()");
         Toast.makeText(mContext, "正在加载数据", Toast.LENGTH_SHORT).show();
         //设置自动加载时刷新头部拖拽距离，时间
-        swipeRefreshLayout.autoRefresh(50,200,1);
+        swipeRefreshLayout.autoRefresh(50, 200, 1);
     }
-
 
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         fetchMovies();
     }
+
+
 }

@@ -3,15 +3,16 @@ package com.example.xu.news;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.xu.news.Utils.CommonUtil;
 import com.example.xu.news.Utils.ConstanceValue;
@@ -27,6 +28,7 @@ import com.example.xu.news.view.NoAnimViewPager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,10 +89,13 @@ public class MainAct2 extends AppCompatActivity implements OnChannelListener, Di
                 //设置最小宽度，使其可以在滑动一部分距离
                 ViewGroup slidingTabStrip = (ViewGroup) tab.getChildAt(0);
                 slidingTabStrip.setMinimumWidth(slidingTabStrip.getMeasuredWidth() + icon_category.getMeasuredWidth());
+//                setIndicator(tab, 10, 10);
             }
         });
+
+        reflex(tab);
         //隐藏指示器
-         tab.setSelectedTabIndicatorHeight(0);
+         tab.setSelectedTabIndicatorHeight(2);
 
     }
 
@@ -171,4 +176,55 @@ public class MainAct2 extends AppCompatActivity implements OnChannelListener, Di
         //添加到现在的位置
         datas.add(endPos, o);
     }
+
+    public void reflex(final TabLayout tabLayout){
+        //了解源码得知 线的宽度是根据 tabView的宽度来设置的
+        tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //拿到tabLayout的mTabStrip属性
+                    LinearLayout mTabStrip = (LinearLayout) tabLayout.getChildAt(0);
+
+                    int dp10 = CommonUtil.dip2px(10);
+
+                    for (int i = 0; i < mTabStrip.getChildCount(); i++) {
+                        View tabView = mTabStrip.getChildAt(i);
+
+                        //拿到tabView的mTextView属性  tab的字数不固定一定用反射取mTextView
+                        Field mTextViewField = tabView.getClass().getDeclaredField("mTextView");
+                        mTextViewField.setAccessible(true);
+
+                        TextView mTextView = (TextView) mTextViewField.get(tabView);
+
+                        tabView.setPadding(0, 0, 0, 0);
+
+                        //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
+                        int width = 0;
+                        width = mTextView.getWidth();
+                        if (width == 0) {
+                            mTextView.measure(0, 0);
+                            width = mTextView.getMeasuredWidth();
+                        }
+
+                        //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
+                        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+                        params.width = width ;
+                        params.leftMargin = dp10;
+                        params.rightMargin = dp10;
+                        tabView.setLayoutParams(params);
+
+                        tabView.invalidate();
+                    }
+
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
 }

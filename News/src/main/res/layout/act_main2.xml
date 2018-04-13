@@ -37,10 +37,10 @@
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#ffffff"
-                app:tabIndicatorColor="@color/color_ff0000"
+                android:background="@color/color_ffffff"
+                app:tabIndicatorColor="@color/color_28d19d"
                 app:tabMode="scrollable"
-                app:tabSelectedTextColor="@color/color_ff0000"
+                app:tabSelectedTextColor="@color/color_28d19d"
                 app:tabTextAppearance="@style/TabStyle"
                 app:tabTextColor="@color/color_7f000000"/>
 
@@ -56,11 +56,11 @@
                 android:src="@drawable/ic_category_expand"
                 app:isColorUi="true"/>
         </RelativeLayout>
-     <!--   <View
+        <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?attr/divider_light_grey"
-            app:isColorUi="true"/>-->
+            android:layout_height="0.5dp"
+            android:background="@color/color_f5f5f5"
+            app:isColorUi="true"/>
 
         <com.example.xu.news.view.NoAnimViewPager
             android:id="@+id/vp"
