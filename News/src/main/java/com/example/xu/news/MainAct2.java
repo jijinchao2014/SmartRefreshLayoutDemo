@@ -23,6 +23,7 @@ import com.example.xu.news.base.LazyloadFragment;
 import com.example.xu.news.bean.Channel;
 import com.example.xu.news.listener.OnChannelListener;
 import com.example.xu.news.view.ChannelDialogFragment;
+import com.example.xu.news.view.NoAnimViewPager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -42,7 +43,7 @@ public class MainAct2 extends AppCompatActivity implements OnChannelListener, Di
     @BindView(R.id.tab)
     ColorTrackTabLayout tab;
     @BindView(R.id.vp)
-    ViewPager mVp;
+    NoAnimViewPager mVp;
     @BindView(R.id.icon_category)
     ImageView icon_category;
 

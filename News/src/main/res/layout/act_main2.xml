@@ -62,7 +62,7 @@
             android:background="?attr/divider_light_grey"
             app:isColorUi="true"/>-->
 
-        <android.support.v4.view.ViewPager
+        <com.example.xu.news.view.NoAnimViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
