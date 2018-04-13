@@ -100,6 +100,8 @@ public class MyFragment extends LazyloadFragment implements OnRefreshListener {
             }
         });
 
+        //倒数第二条开始预加载（非必须）
+        adapter.setPreLoadNumber(2);
         recyclerView.setAdapter(adapter);
     }
 
