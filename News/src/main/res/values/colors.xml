@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_ff0000">#ff0000</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_89000000">#89000000</color>
+    <color name="color_40000000">#40000000</color>
+    <color name="color_7f000000">#7f000000</color>
+    <color name="color_a0000000">#a0000000</color>
+    <color name="color_4d000000">#4d000000</color>
+    <color name="color_55000000">#55000000</color>
+    <color name="color_aa000000">#aa000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="ssxinmian4">#ffffffff</color>
+    <color name="ssxinmian7">#fff85959</color>
+    <color name="ssxinhongse1">#fff85959</color>
+    <color name="subscribe_category_btn_bg_normal">#ffd43d3d</color>
+    <color name="ssxinxian1">@color/ssxinjiangexian1</color>
+    <color name="ssxinjiangexian1">#ffe8e8e8</color>
+    <color name="white">#ffffffff</color>
+
+    <string-array name="movie_serial_bg">
+        <item>#24c6d5</item>
+        <item>#57dd86</item>
+        <item>#ad7dcf</item>
+        <item>#ff484d</item>
+        <item>#fcba59</item>
+        <item>#24c6d5</item>
+    </string-array>
+
+</resources>
